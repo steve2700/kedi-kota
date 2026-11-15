@@ -1,0 +1,35 @@
+import type { Metadata } from "next"
+import Link from "next/link"
+import { PageHero } from "@/components/page-hero"
+import { CtaBand } from "@/components/cta-band"
+import { JsonLd } from "@/components/json-ld"
+import { DELIVERY, slugify } from "@/lib/delivery"
+import { SITE, ADDRESS_LINE, MAPS_LINK } from "@/lib/site"
+
+export const metadata: Metadata = { title: "Find Us: 122 Caledon Drive, Norkem Park, Kempton Park", description: "Kedi Kota is at 122 Caledon Drive, Norkem Park, Kempton Park, by Green Gate. Collect your kota or get delivery for R40.", alternates: { canonical: "/find-us" } }
+export default function FindUs() {
+  return (
+    <>
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "ContactPage", url: `${SITE.url}/find-us`, mainEntity: { "@id": `${SITE.url}/#business` } }} />
+      <PageHero crumbs={[{ name: "Find us", href: "/find-us" }]} title="Come and get it" mark={["get"]} text={`${ADDRESS_LINE}. ${SITE.address.landmark}.`} image={{ src: "/kedi-kota-toasted-kota-with-egg-patty-cheese-and-sauce.jpg", alt: "Toasted Kedi Kota kota with egg, patty and cheese" }} />
+      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-16 md:grid-cols-2">
+        <div className="rounded-[2rem] border-4 border-ink bg-white p-8 shadow-[6px_6px_0_0_#0e0e0e]">
+          <h2 className="font-display text-3xl">Visit</h2>
+          <p className="mt-4 text-xl font-medium">{ADDRESS_LINE}<br />{SITE.address.landmark}</p>
+          <a href={MAPS_LINK} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex h-12 items-center rounded-full border-4 border-ink bg-signal px-7 font-extrabold text-white">Get directions</a>
+          <h3 className="mt-8 font-display text-2xl">Opening times</h3>
+          <p className="mt-2 text-lg font-medium">{SITE.hours ?? "Message us on WhatsApp for today's opening times."}</p>
+          <h3 className="mt-8 font-display text-2xl">Talk to us</h3>
+          <p className="mt-2 text-lg font-medium">WhatsApp {SITE.phoneDisplay}<br /><a className="font-extrabold text-signal underline" href={SITE.tiktok} target="_blank" rel="noopener noreferrer">TikTok @kedikota</a></p>
+        </div>
+        <div className="rounded-[2rem] border-4 border-ink bg-butter p-8 shadow-[6px_6px_0_0_#0e0e0e]">
+          <h2 className="font-display text-3xl">Delivery R{DELIVERY.flatFee}</h2>
+          <p className="mt-3 text-lg font-bold">We deliver across Kempton Park:</p>
+          <ul className="mt-4 flex flex-wrap gap-2">{DELIVERY.zones.map((z) => <li key={z}><Link href={`/kota-delivery-${slugify(z)}`} className="inline-block rounded-full border-2 border-ink bg-white px-4 py-1.5 text-sm font-extrabold hover:bg-ink hover:text-white">{z}</Link></li>)}</ul>
+          <p className="mt-4 font-medium">Further out? We confirm the fee on WhatsApp before we deliver.</p>
+        </div>
+      </section>
+      <CtaBand />
+    </>
+  )
+}
