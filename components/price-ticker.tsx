@@ -1,15 +1,28 @@
+import Link from "next/link"
 import { KOTAS, SIDES, money } from "@/lib/menu"
-const items = [...KOTAS.map((k) => `${k.name} ${money(k.price)}`), ...SIDES.map((s) => `${s.name} ${money(s.price)}`)]
+
+const items = [
+  ...KOTAS.map((k) => ({ name: k.name, price: money(k.price) })),
+  ...SIDES.map((s) => ({ name: s.name, price: money(s.price) })),
+]
+
 export function PriceTicker() {
-  const row = (hidden: boolean) => items.map((t) => (
-    <span key={`${hidden}-${t}`} className="flex items-center gap-8">
-      <span aria-hidden={hidden || undefined} className="whitespace-nowrap font-display text-4xl text-white md:text-6xl">{t}</span>
-      <span aria-hidden="true" className="h-5 w-5 shrink-0 rounded-full bg-butter" />
-    </span>
-  ))
   return (
-    <section aria-label="Our menu and prices" className="on-dark border-y-4 border-ink bg-signal py-8">
-      <div className="overflow-hidden"><div className="strip-fast flex w-max items-center gap-8 pr-8">{row(false)}{row(true)}</div></div>
+    <section aria-label="Our menu and prices" className="on-dark border-y-4 border-ink bg-signal py-4 sm:py-5">
+      <div className="mx-auto max-w-7xl px-5">
+        <ul className="flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 md:flex-wrap md:justify-center">
+          {items.map((item) => (
+            <li key={item.name} className="shrink-0 snap-start">
+              <Link href="/menu" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/60 bg-white/10 px-4 py-2 text-sm font-extrabold text-white transition hover:bg-white hover:text-signal">
+                <span>{item.name}</span>
+                <span aria-hidden="true" className="text-butter">·</span>
+                <span>{item.price}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-2 text-center text-xs font-bold text-white/80 md:hidden">Swipe for more menu prices</p>
+      </div>
     </section>
   )
 }

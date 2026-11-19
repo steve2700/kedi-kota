@@ -7,7 +7,6 @@ import { PhotoRibbon } from "@/components/photo-ribbon"
 import { KotaBuilder } from "@/components/kota-builder"
 import { OrderSteps } from "@/components/order-steps"
 import { WordReveal } from "@/components/word-reveal"
-import { ScrambleText } from "@/components/scramble-text"
 import { ScrollText } from "@/components/scroll-text"
 import { CountUp } from "@/components/count-up"
 import { Faq } from "@/components/faq"
@@ -42,10 +41,10 @@ export default function Home() {
               <span className="mt-2 inline-block -rotate-1 rounded-2xl bg-signal px-3 pb-1 text-white">Sorted.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-graphite sm:text-xl">
-              Loaded, toasted and stacked high. Kotas from R20, with chips, spiral potatoes and more. Grab yours in Norkem Park or get delivery across Kempton Park.
+              Loaded, toasted kotas from R20. Pick your favourites, send your order on WhatsApp, then choose delivery across Kempton Park or collection in Norkem Park.
             </p>
             <div className="mt-7 flex flex-wrap gap-2 sm:gap-3">
-              <LinkButton href="/menu" size="md" className="sm:h-14 sm:px-9 sm:text-lg">Order now</LinkButton>
+              <LinkButton href="/menu" size="md" className="sm:h-14 sm:px-9 sm:text-lg">Browse menu</LinkButton>
               <WhatsAppButton size="md" label="WhatsApp" message="Hi Kedi Kota, I would like to order." className="sm:h-14 sm:px-9 sm:text-lg" />
             </div>
             <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-2 text-xs font-extrabold text-graphite">
@@ -63,15 +62,29 @@ export default function Home() {
 
       <PriceTicker />
 
-      <section id="builder" className="mx-auto max-w-7xl px-5 py-20">
-        <p className="mb-3"><ScrambleText text="01 BUILD YOUR KOTA" className="kicker text-chrome" /></p>
-        <WordReveal as="h2" text="Pick one and watch it stack up" className="mb-10 max-w-3xl text-4xl leading-[1.08] md:text-5xl" mark={["stack"]} />
+      <section id="builder" aria-label="Build your kota" className="mx-auto max-w-7xl px-5 py-14 sm:py-16">
+        <p className="mb-3"><span className="kicker text-chrome">01 PICK YOUR KOTA</span></p>
+        <WordReveal as="h2" text="Choose your kota" className="mb-8 max-w-3xl text-4xl leading-[1.08] md:text-5xl" mark={["kota"]} />
         <KotaBuilder />
+        <div className="mt-7 flex flex-wrap items-center gap-4">
+          <p className="font-bold text-graphite">Want sides with that?</p>
+          <LinkButton href="/menu" look="dark" size="md">See the full menu</LinkButton>
+        </div>
+      </section>
+
+      <section aria-label="How to order" className="mx-auto max-w-7xl px-5 py-14 sm:py-16">
+        <p className="mb-3"><span className="kicker text-chrome">02 HOW TO ORDER</span></p>
+        <WordReveal as="h2" text="Order in four easy steps" className="mb-8 text-4xl md:text-5xl" />
+        <OrderSteps />
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <LinkButton href="/menu" size="md">Start your order</LinkButton>
+          <p className="text-sm font-bold text-graphite">Choose delivery or collect. We confirm your order on WhatsApp.</p>
+        </div>
       </section>
 
       <section className="bg-white py-20">
         <div className="mx-auto max-w-5xl px-5">
-          <ScrambleText text="WHY KEDI KOTA" className="kicker text-chrome" />
+          <p className="kicker text-chrome">WHY KEDI KOTA</p>
           <ScrollText className="mt-5 font-display text-3xl leading-[1.2] md:text-5xl" text="Fresh chips, toasted bread, real fillings and plenty of sauce. Stacked high and served hot. Because it is more than a kota." />
           <div className="mt-14 grid grid-cols-3 gap-6">
             {[[KOTAS.length, "kotas on the menu", ""], [20, "kotas from", "R"], [40, "flat delivery", "R"]].map(([n, l, p]) => (
@@ -84,25 +97,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20" aria-labelledby="kitchen">
+      <section className="py-20" aria-label="From our kitchen">
         <div className="mx-auto mb-8 max-w-7xl px-5">
-          <p className="mb-3"><ScrambleText text="02 FROM OUR KITCHEN" className="kicker text-chrome" /></p>
+          <p className="mb-3"><span className="kicker text-chrome">03 FROM OUR KITCHEN</span></p>
           <WordReveal as="h2" text="Straight off the board" className="text-4xl md:text-5xl" />
         </div>
         <PhotoRibbon />
         <div className="mx-auto mt-8 max-w-7xl px-5"><LinkButton href="/gallery" look="dark" size="md">See the gallery</LinkButton></div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 pb-20">
-        <p className="mb-3"><ScrambleText text="03 HOW IT WORKS" className="kicker text-chrome" /></p>
-        <WordReveal as="h2" text="Four steps to your kota" className="mb-10 text-4xl md:text-5xl" />
-        <OrderSteps />
-      </section>
 
       <section className="on-dark border-y-4 border-ink bg-ink py-20 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-2">
           <div>
-            <p className="mb-3"><ScrambleText text="04 FIND US" className="kicker text-butter" /></p>
+            <p className="mb-3"><span className="kicker text-butter">04 FIND US</span></p>
             <WordReveal as="h2" text="Come and get it, or we bring it" className="text-4xl leading-[1.08] md:text-5xl" />
             <p className="mt-5 text-xl font-medium text-silver">{ADDRESS_LINE}. {SITE.address.landmark}.</p>
             <div className="mt-6 flex flex-wrap gap-3">
