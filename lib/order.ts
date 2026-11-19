@@ -19,7 +19,7 @@ export function lineText(l: Line) {
 export function buildMessage(o: OrderInput) {
   const t = totals(o.lines, o.fulfilment, o.area)
   const out = [
-    "*KEDI KOTA ORDER*", `Ref: ${o.ref}`, `Name: ${o.name.trim() || "..."}`, `Phone: ${o.phone.trim() || "..."}`, "", "*Order*",
+    "*KEDI KOTA ORDER*", `Ref: ${o.ref}`, `Name: ${o.name.trim() || "..."}`, ...(o.phone.trim() ? [`Phone: ${o.phone.trim()}`] : []), "", "*Order*",
     ...o.lines.map(lineText), "", `Subtotal: ${money(t.subtotal)}`,
     o.fulfilment === "collection" ? "Collection: no delivery fee" : t.toConfirm ? "Delivery: fee to be confirmed (outside our usual area)" : `Delivery: ${money(t.fee)}`,
     t.toConfirm ? `Total: ${money(t.subtotal)} plus delivery fee` : `Total: ${money(t.total)}`,

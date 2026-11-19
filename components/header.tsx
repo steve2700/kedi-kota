@@ -22,7 +22,7 @@ export function Header() {
         <Logo />
         <nav aria-label="Main" className="hidden items-center lg:flex">{links.map((l) => <Link key={l.href} href={l.href} className={item}>{l.label}</Link>)}</nav>
         <div className="flex items-center gap-3">
-          <Link href="/order" className="flex h-12 items-center gap-2 rounded-full border-2 border-ink bg-white px-4 text-sm font-extrabold transition hover:bg-ink hover:text-white" aria-label={`Your order: ${count} items`}>
+          <Link href="/order" className="flex h-12 items-center gap-2 rounded-full border-2 border-ink bg-white px-4 text-sm font-extrabold transition hover:bg-ink hover:text-white" aria-label={`Your order: ${count} ${count === 1 ? "item" : "items"}`}>
             <span className={`flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-sm ${count ? "bg-signal text-white" : "bg-silver text-ink"}`}>{count}</span>
             <span className="hidden sm:inline">{count ? money(subtotal) : "Your order"}</span>
           </Link>
