@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react"
 
 const steps = [
-  { t: "Pick your kota", d: "Choose a kota and sides from the menu. Leave out anything you do not like." },
-  { t: "Check out", d: "Add your name, number and address, or choose to collect." },
-  { t: "Send on WhatsApp", d: "Your order opens in WhatsApp, ready to send. We confirm it." },
-  { t: "Pay and enjoy", d: "Pay cash, EFT or card. We cook, you eat." },
+  { t: "Choose your favourites", d: "Pick a kota and any sides from the menu. Leave out anything you do not want." },
+  { t: "Choose delivery or collection", d: "Add the details we need to deliver, or select collection in Norkem Park." },
+  { t: "Send your order", d: "Review it, open WhatsApp and send. We will confirm and get cooking." },
+  { t: "Pay and enjoy", d: "Pay cash, by EFT or with a card payment link we send on WhatsApp." },
 ]
 export function OrderSteps() {
   const ref = useRef<HTMLOListElement | null>(null)
