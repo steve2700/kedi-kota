@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 import { Logo } from "@/components/logo"
 import { SITE, ADDRESS_LINE, MAPS_LINK } from "@/lib/site"
 import { DELIVERY, slugify } from "@/lib/delivery"
@@ -32,7 +31,6 @@ export function Footer() {
               <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-butter transition hover:text-white">WhatsApp {SITE.phoneDisplay}</a>
               <a href={SITE.tiktok} target="_blank" rel="noopener noreferrer" className="text-butter transition hover:text-white">TikTok @kedikota</a>
             </div>
-            <Image src="/logo-butterfly.png" alt="" width={60} height={77} className="mt-6 h-14 w-auto opacity-75" />
           </div>
 
           <section aria-labelledby="footer-find-us">
