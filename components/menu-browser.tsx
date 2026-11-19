@@ -27,9 +27,9 @@ function KotaCard({ k }: { k: (typeof KOTAS)[number] }) {
           {k.ingredients.map((i) => <button key={i} type="button" aria-pressed={removed.includes(i)} onClick={() => toggle(i)} className={`rounded-full border-2 px-3 py-1.5 text-sm font-bold transition ${removed.includes(i) ? "border-signal bg-signal text-white" : "border-ink bg-white hover:bg-silver"}`}>{removed.includes(i) ? `No ${i}` : cap(i)}</button>)}
         </div>
       )}
-      <div className="mt-auto flex items-center gap-3 pt-6">
-        <button type="button" onClick={() => { add({ id: k.id, name: k.name, price: k.price }, { removed }); setFlash((n) => n + 1) }} className="h-12 flex-1 rounded-full border-4 border-ink bg-signal px-6 text-base font-extrabold text-white transition hover:bg-signal-dark active:scale-95">Add to order</button>
-        {flash > 0 && <span key={flash} className="pop rounded-full bg-butter px-4 py-2 text-sm font-extrabold" role="status">Added</span>}
+      <div className="mt-auto flex flex-col gap-3 pt-6">
+        <button type="button" onClick={() => { add({ id: k.id, name: k.name, price: k.price }, { removed }); setFlash((n) => n + 1) }} className="h-12 w-full rounded-full border-4 border-ink bg-signal px-6 text-base font-extrabold text-white transition hover:bg-signal-dark active:scale-95">Add to order</button>
+        {flash > 0 && <span key={flash} className="pop self-start rounded-full bg-butter px-4 py-2 text-sm font-extrabold" role="status"><Link href="/order">Added · review order</Link></span>}
       </div>
     </article>
   )
@@ -72,7 +72,7 @@ export function MenuBrowser() {
       </div>
       <div className="mt-12 rounded-[2rem] border-4 border-ink bg-butter p-6 text-center md:flex md:items-center md:justify-between md:text-left">
         <p className="font-display text-2xl">{count ? `${count} ${count === 1 ? "item" : "items"} in your order: ${money(subtotal)}` : "Your order is empty. Add something tasty."}</p>
-        <Link href="/order" className="mt-4 inline-flex h-14 items-center rounded-full border-4 border-ink bg-ink px-8 text-lg font-extrabold text-white transition hover:bg-graphite md:mt-0">{count ? "Go to checkout" : "See your order"}</Link>
+        <Link href={count ? "/order" : "#kotas"} className="mt-4 inline-flex h-14 items-center rounded-full border-4 border-ink bg-ink px-8 text-lg font-extrabold text-white transition hover:bg-graphite md:mt-0">{count ? "Review your order" : "Start with a kota"}</Link>
       </div>
     </div>
   )

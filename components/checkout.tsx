@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useState, type FormEvent } from "react"
 import { WhatsAppIcon } from "@/components/icons"
 import { useCart } from "@/components/cart-provider"
 import { DELIVERY } from "@/lib/delivery"
@@ -28,10 +28,15 @@ export function Checkout() {
 
   const t = useMemo(() => totals(lines, fulfilment, area), [lines, fulfilment, area])
   const needsAddress = fulfilment === "delivery"
-  const readyToSend = lines.length > 0 && name.trim() && phone.trim() && (!needsAddress || (address.trim() && area))
+  const readyToSend = lines.length > 0 && name.trim() && (!needsAddress || (address.trim() && area))
   const message = buildMessage({ ref, lines, fulfilment, area, address, name, phone, payment, notes })
 
-  const send = () => { if (!readyToSend) return; trackWhatsAppClick(); window.open(WA_LINK(message), "_blank", "noopener,noreferrer") }
+  const send = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!readyToSend) return
+    trackWhatsAppClick()
+    window.open(WA_LINK(message), "_blank", "noopener,noreferrer")
+  }
 
   if (!ready) return <p className="py-10 text-lg font-bold">Loading your order...</p>
   if (!lines.length) {
@@ -46,7 +51,7 @@ export function Checkout() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-      <div className="space-y-8">
+      <form id="checkout-form" onSubmit={send} className="space-y-8">
         <section className="rounded-[2rem] border-4 border-ink bg-white p-6">
           <h2 className="font-display text-3xl">Your order</h2>
           <ul className="mt-4 divide-y-2 divide-ink/10">
@@ -79,15 +84,15 @@ export function Checkout() {
           </fieldset>
           {fulfilment === "delivery" ? (
             <div className="mt-6 grid gap-5">
-              <label className="block"><span className={label}>Which area are you in?</span>
-                <select className={`${field} mt-2`} value={area} onChange={(e) => setArea(e.target.value)}>
+              <label className="block"><span className={label}>Your area <span aria-hidden="true">*</span><span className="sr-only">(required)</span></span>
+                <select required className={`${field} mt-2`} value={area} onChange={(e) => setArea(e.target.value)}>
                   <option value="">Choose your area</option>
                   {DELIVERY.zones.map((z) => <option key={z} value={z}>{z}</option>)}
                   <option value={DELIVERY.otherLabel}>{DELIVERY.otherLabel}</option>
                 </select>
               </label>
               {area && <p className="rounded-2xl bg-butter px-4 py-3 font-extrabold">{t.toConfirm ? "We will confirm your delivery fee on WhatsApp." : `Delivery in your area is ${money(DELIVERY.flatFee)}.`}</p>}
-              <label className="block"><span className={label}>Delivery address</span><input className={`${field} mt-2`} value={address} onChange={(e) => setAddress(e.target.value)} placeholder="House number, street, complex" autoComplete="street-address" /></label>
+              <label className="block"><span className={label}>Delivery address <span aria-hidden="true">*</span><span className="sr-only">(required)</span></span><input required className={`${field} mt-2`} value={address} onChange={(e) => setAddress(e.target.value)} placeholder="House number, street, complex" autoComplete="street-address" /></label>
             </div>
           ) : (
             <p className="mt-5 rounded-2xl bg-butter px-4 py-3 font-extrabold">Collect at {ADDRESS_LINE}. No delivery fee.</p>
@@ -96,15 +101,15 @@ export function Checkout() {
 
         <section className="rounded-[2rem] border-4 border-ink bg-white p-6">
           <div className="grid gap-5 md:grid-cols-2">
-            <label className="block"><span className={label}>Your name</span><input className={`${field} mt-2`} value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" autoComplete="name" /></label>
-            <label className="block"><span className={label}>Your phone number</span><input className={`${field} mt-2`} value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="For delivery updates" inputMode="tel" autoComplete="tel" /></label>
+            <label className="block"><span className={label}>Your name <span aria-hidden="true">*</span><span className="sr-only">(required)</span></span><input required className={`${field} mt-2`} value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" autoComplete="name" /></label>
+            <label className="block"><span className={label}>Phone number <span className="text-sm font-bold text-graphite">(optional)</span></span><input className={`${field} mt-2`} value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Only if you want a call" type="tel" autoComplete="tel" /></label>
           </div>
           <fieldset className="mt-6"><legend className={label}>How will you pay?</legend>
             <div className="mt-3 flex flex-wrap gap-3">{PAYMENTS.map((p) => <button key={p} type="button" aria-pressed={payment === p} onClick={() => setPayment(p)} className={chip(payment === p)}>{p}</button>)}</div>
           </fieldset>
           <label className="mt-6 block"><span className={label}>Anything else?</span><input className={`${field} mt-2`} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="For example: which 330ml drink with my combo" /></label>
         </section>
-      </div>
+      </form>
 
       <aside className="self-start lg:sticky lg:top-28" aria-label="Order summary">
         <div className="rounded-[2rem] border-4 border-ink bg-ink p-6 text-white shadow-[8px_8px_0_0_#e30613]">
@@ -114,10 +119,10 @@ export function Checkout() {
             <div className="flex justify-between"><dt className="text-silver">Delivery</dt><dd className="font-extrabold">{fulfilment === "collection" ? "None" : !area ? "Choose an area" : t.toConfirm ? "To be confirmed" : money(t.fee)}</dd></div>
             <div className="flex justify-between border-t-2 border-white/20 pt-3 text-2xl"><dt className="font-display">Total</dt><dd className="font-display text-butter">{t.toConfirm ? `${money(t.subtotal)} + delivery` : money(t.total)}</dd></div>
           </dl>
-          <button type="button" onClick={send} disabled={!readyToSend} className="mt-6 flex h-16 w-full items-center justify-center gap-3 rounded-full border-4 border-white bg-[#25D366] text-lg font-extrabold text-ink transition hover:bg-[#1fbd5b] active:scale-[0.98] disabled:cursor-not-allowed disabled:border-white/30 disabled:bg-white/10 disabled:text-white/50">
-            <WhatsAppIcon className="h-7 w-7" />Send my order on WhatsApp
+          <button id="send-order" type="submit" form="checkout-form" disabled={!readyToSend} className="mt-6 flex h-16 w-full items-center justify-center gap-3 rounded-full border-4 border-white bg-[#25D366] text-lg font-extrabold text-ink transition hover:bg-[#1fbd5b] active:scale-[0.98] disabled:cursor-not-allowed disabled:border-white/30 disabled:bg-white/10 disabled:text-white/50">
+            <WhatsAppIcon className="h-7 w-7" />Send on WhatsApp
           </button>
-          <p className="mt-3 text-center text-sm text-silver">{readyToSend ? "WhatsApp opens with your order ready to send. We confirm it and get cooking." : fulfilment === "delivery" ? "Add your name, number, area and address to send." : "Add your name and number to send."}</p>
+          <p className="mt-3 text-center text-sm text-silver">{readyToSend ? "WhatsApp opens with your order ready to send. We confirm it and get cooking." : fulfilment === "delivery" ? "Add your name, area and address to send. Your phone number is optional." : "Add your name to send. Your phone number is optional."}</p>
           <details className="mt-5 text-sm text-silver"><summary className="cursor-pointer font-extrabold text-white">Preview the message</summary><pre className="mt-3 whitespace-pre-wrap rounded-2xl bg-white/10 p-4 font-sans">{message}</pre></details>
         </div>
       </aside>
