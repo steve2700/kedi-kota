@@ -6,8 +6,6 @@ import { PriceTicker } from "@/components/price-ticker"
 import { PhotoRibbon } from "@/components/photo-ribbon"
 import { KotaBuilder } from "@/components/kota-builder"
 import { OrderSteps } from "@/components/order-steps"
-import { RotatingWord } from "@/components/rotating-word"
-import { Typewriter } from "@/components/typewriter"
 import { WordReveal } from "@/components/word-reveal"
 import { ScrambleText } from "@/components/scramble-text"
 import { ScrollText } from "@/components/scroll-text"
@@ -31,29 +29,35 @@ const faqs = [
 export default function Home() {
   return (
     <>
-      <section className="relative isolate overflow-hidden" aria-label="Welcome">
-        <div aria-hidden="true" className="absolute -right-32 -top-32 -z-10 h-[520px] w-[520px] rounded-full bg-butter/60 blur-3xl" />
-        <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 py-12 md:py-20 lg:grid-cols-[1.05fr_0.95fr]">
+      <section className="relative isolate overflow-hidden bg-steel" aria-label="Welcome">
+        <div aria-hidden="true" className="absolute -right-32 -top-40 -z-10 h-[520px] w-[520px] rounded-full bg-butter/60 blur-3xl" />
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-10 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-16">
           <div>
-            <div className="rise flex flex-wrap items-center gap-x-3 gap-y-2">
-              <span className="kicker rounded-full bg-ink px-4 py-2 text-butter">Hungry for</span>
-              <Typewriter className="min-h-[1.6em] text-base font-extrabold text-graphite" lines={["a loaded kota?", "chips with Russian?", "a spiral potato?", "something big and saucy?"]} />
-            </div>
-            <h1 className="mt-5 text-5xl leading-[1.05] sm:text-6xl lg:text-[4rem]">
-              <span className="rise block" style={{ animationDelay: "120ms" }}>More than a</span>
-              <span className="rise my-1 block" style={{ animationDelay: "240ms" }}><RotatingWord interval={2200} words={["kota", "feast", "stack", "meal"]} className="rounded-3xl bg-signal px-5 pb-1 text-white" /></span>
-              <span className="rise block" style={{ animationDelay: "360ms" }}>in Kempton Park.</span>
+            <p className="kicker inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/70 px-4 py-2 text-graphite">
+              <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-signal" />
+              Norkem Park · Kempton Park
+            </p>
+            <h1 className="mt-6 max-w-2xl text-[clamp(2.35rem,5vw,4.25rem)] leading-[0.96]">
+              <span className="block">Kota fix?</span>
+              <span className="mt-2 inline-block -rotate-1 rounded-2xl bg-signal px-3 pb-1 text-white">Sorted.</span>
             </h1>
-            <WordReveal as="p" step={26} text="Loaded, toasted and stacked high. Kotas from R20, chips, spiral potatoes and more. Collect in Norkem Park or get it delivered." className="mt-6 max-w-xl text-xl font-medium leading-relaxed text-graphite" />
-            <div className="rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "600ms" }}>
-              <LinkButton href="/menu" pulse>Order Now</LinkButton>
-              <WhatsAppButton label="WhatsApp" message="Hi Kedi Kota, I would like to order." />
+            <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-graphite sm:text-xl">
+              Loaded, toasted and stacked high. Kotas from R20, with chips, spiral potatoes and more. Grab yours in Norkem Park or get delivery across Kempton Park.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-2 sm:gap-3">
+              <LinkButton href="/menu" size="md" className="sm:h-14 sm:px-9 sm:text-lg">Order now</LinkButton>
+              <WhatsAppButton size="md" label="WhatsApp" message="Hi Kedi Kota, I would like to order." className="sm:h-14 sm:px-9 sm:text-lg" />
             </div>
-            <ul className="rise mt-8 flex flex-wrap gap-2 font-extrabold" style={{ animationDelay: "720ms" }}>
-              {["Delivery R40", "Collect at Norkem Park", "Cash, EFT or card"].map((x) => <li key={x} className="rounded-full border-2 border-ink bg-white px-4 py-2 text-sm">{x}</li>)}
+            <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-2 text-xs font-extrabold text-graphite">
+              {["Kotas from R20", "Delivery R40", "Cash, EFT or card"].map((item) => (
+                <li key={item} className="inline-flex items-center gap-2">
+                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-signal" />
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="rise px-3 sm:px-8" style={{ animationDelay: "400ms" }}><HeroStage /></div>
+          <div className="px-1 sm:px-5 lg:px-0"><HeroStage /></div>
         </div>
       </section>
 
