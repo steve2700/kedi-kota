@@ -27,7 +27,7 @@ h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 400; 
 .drift-a { animation: drift-a 16s ease-in-out infinite alternate; }
 .drift-b { animation: drift-b 18s ease-in-out infinite alternate; }
 .drift-c { animation: drift-c 20s ease-in-out infinite alternate; }
-@keyframes slide-cycle { 0% { opacity: 0; } 4% { opacity: 1; } 20% { opacity: 1; } 24% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes slide-cycle { 0% { opacity: 1; } 20% { opacity: 1; } 24% { opacity: 0; } 100% { opacity: 0; } }
 .slide { opacity: 0; animation: slide-cycle 30s linear infinite; }
 @keyframes wiggle { 0%, 100% { transform: rotate(-8deg) scale(1); } 50% { transform: rotate(-3deg) scale(1.06); } }
 .wiggle { animation: wiggle 3.2s ease-in-out infinite; }

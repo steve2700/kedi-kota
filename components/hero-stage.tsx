@@ -1,26 +1,38 @@
 import Image from "next/image"
-const slides: [string, string][] = [
-  ["kedi-kota-garlic-toasted-kota-twin-stack-on-board.jpg", "Two garlic toasted Kedi Kota kotas stacked with chips, egg, patty and sauces"],
-  ["kedi-kota-stacked-kota-with-chips-egg-and-peri-peri-sauce.jpg", "Kedi Kota kota stacked with chips, egg, cheese and peri peri sauce"],
-  ["kedi-kota-loaded-kota-with-polony-egg-cheese-and-chips.jpg", "Loaded Kedi Kota kota with polony, egg, cheese and chips"],
-  ["kedi-kota-toasted-kota-with-egg-patty-cheese-and-sauce.jpg", "Toasted Kedi Kota kota with egg, patty, cheese and sauce"],
-  ["kedi-kota-kota-with-chips-egg-patty-and-russian.jpg", "Kedi Kota kota with chips, egg, patty and Russian"],
+
+const slides = [
+  "kedi-kota-garlic-toasted-kota-twin-stack-on-board.jpg",
+  "kedi-kota-stacked-kota-with-chips-egg-and-peri-peri-sauce.jpg",
+  "kedi-kota-loaded-kota-with-polony-egg-cheese-and-chips.jpg",
+  "kedi-kota-toasted-kota-with-egg-patty-cheese-and-sauce.jpg",
+  "kedi-kota-kota-with-chips-egg-patty-and-russian.jpg",
 ]
+
 export function HeroStage() {
   return (
-    <div className="relative pb-6">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border-4 border-ink bg-ink shadow-[10px_10px_0_0_#e30613]" role="group" aria-label="Photos of our kotas">
-        {slides.map(([file, alt], i) => (
+    <div className="relative mx-auto w-full max-w-[38rem] lg:max-w-none">
+      <figure className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border-[3px] border-ink bg-ink shadow-[10px_10px_0_0_#e30613]" role="img" aria-label="Two loaded Kedi Kota kotas with chips, egg, sauces and toasted bread">
+        {slides.map((file, i) => (
           <div key={file} className="slide absolute inset-0" style={{ animationDelay: `${i * 6}s` }}>
-            <Image src={`/${file}`} alt={alt} fill priority={i === 0} sizes="(min-width: 1024px) 40vw, 100vw" className={`object-cover ${["drift-a", "drift-b", "drift-c", "drift-a", "drift-b"][i]}`} />
+            <Image
+              src={`/${file}`}
+              alt=""
+              fill
+              priority={i === 0}
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className={`object-cover ${["drift-a", "drift-b", "drift-c", "drift-a", "drift-b"][i]}`}
+            />
           </div>
         ))}
-      </div>
-      <div aria-hidden="true" className="wiggle absolute -right-3 top-6 flex h-28 w-28 flex-col items-center justify-center rounded-full border-4 border-ink bg-signal text-center text-white shadow-lg sm:-right-6 sm:h-32 sm:w-32">
-        <span className="text-[11px] font-extrabold uppercase tracking-widest">Kotas from</span><span className="font-display text-4xl leading-none sm:text-5xl">R20</span>
-      </div>
-      <div aria-hidden="true" className="bob absolute -left-3 bottom-2 flex h-24 w-24 flex-col items-center justify-center rounded-full border-4 border-ink bg-butter text-center text-ink shadow-lg sm:-left-8 sm:h-28 sm:w-28">
-        <span className="text-[10px] font-extrabold uppercase tracking-widest">Delivery</span><span className="font-display text-3xl leading-none sm:text-4xl">R40</span>
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/5 to-transparent" />
+        <figcaption className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-7">
+          <span className="kicker text-butter">The Kedi way</span>
+          <span className="mt-1 block font-display text-2xl leading-tight sm:text-3xl">More than a kota.</span>
+        </figcaption>
+      </figure>
+      <div aria-hidden="true" className="absolute -right-2 -top-4 flex -rotate-3 flex-col items-center rounded-2xl border-2 border-ink bg-signal px-4 py-3 text-white shadow-[4px_4px_0_0_#0e0e0e] sm:-right-4 sm:-top-5">
+        <span className="text-[10px] font-extrabold uppercase tracking-[0.16em]">Kotas from</span>
+        <span className="font-display text-3xl leading-none">R20</span>
       </div>
     </div>
   )
