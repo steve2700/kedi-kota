@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   icons: { icon: [{ url: "/favicon.ico", sizes: "any" }, { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" }, { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }], apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }], other: [{ rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#e30613" }] },
   manifest: "/site.webmanifest",
-  openGraph: { type: "website", locale: "en_ZA", url: SITE.url, siteName: "Kedi Kota", title: "Kedi Kota | More Than A Kota", description: "Loaded kotas in Norkem Park, Kempton Park. Order online. Delivery R40.", images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Kedi Kota, loaded kotas in Kempton Park" }] },
+  openGraph: { type: "website", locale: "en_ZA", url: SITE.url, siteName: "Kedi Kota", title: "Kedi Kota | More Than A Kota", description: "Loaded kotas in Norkem Park, Kempton Park. Order online. Delivery R40.", images: [{ url: "/og-image.png", width: 1424, height: 752, alt: "Kedi Kota loaded kota, More Than A Kota" }] },
   twitter: { card: "summary_large_image", title: "Kedi Kota | More Than A Kota", description: "Loaded kotas in Norkem Park, Kempton Park. Order online.", images: ["/og-image.png"] },
   category: "Restaurants",
   other: { "geo.region": "ZA-GP", "geo.placename": "Norkem Park, Kempton Park" },
