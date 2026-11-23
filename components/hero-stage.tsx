@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { KOTA_FROM } from "@/lib/menu"
 
 const slides = [
   "kedi-kota-garlic-toasted-kota-twin-stack-on-board.jpg",
@@ -32,7 +33,7 @@ export function HeroStage() {
       </figure>
       <div aria-hidden="true" className="absolute -right-2 -top-4 flex -rotate-3 flex-col items-center rounded-2xl border-2 border-ink bg-signal px-4 py-3 text-white shadow-[4px_4px_0_0_#0e0e0e] sm:-right-4 sm:-top-5">
         <span className="text-[10px] font-extrabold uppercase tracking-[0.16em]">Kotas from</span>
-        <span className="font-display text-3xl leading-none">R20</span>
+        <span className="font-display text-3xl leading-none">R{KOTA_FROM}</span>
       </div>
     </div>
   )

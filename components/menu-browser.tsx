@@ -1,8 +1,10 @@
 "use client"
 
 import Link from "next/link"
+import { UberEatsLogo } from "@/components/buttons"
 import { useState } from "react"
-import { KOTAS, SIDES, cap, money } from "@/lib/menu"
+import { KOTAS, SIDES, PAP_MEALS, DRINKS, DRINK_SIZE, cap, money } from "@/lib/menu"
+import { SITE } from "@/lib/site"
 import { useCart } from "@/components/cart-provider"
 
 function KotaCard({ k }: { k: (typeof KOTAS)[number] }) {
@@ -61,7 +63,7 @@ export function MenuBrowser() {
     <div>
       <h2 className="font-display text-4xl md:text-5xl">Kotas</h2>
       <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">{KOTAS.map((k) => <KotaCard key={k.id} k={k} />)}</div>
-      <h2 className="mt-16 font-display text-4xl md:text-5xl">Sides</h2>
+      <h2 className="mt-16 font-display text-4xl md:text-5xl">Chips and sides</h2>
       <div className="mt-8 grid gap-8 md:grid-cols-2">
         {groups.map((g) => (
           <div key={g}>
@@ -70,7 +72,14 @@ export function MenuBrowser() {
           </div>
         ))}
       </div>
-      <div className="mt-12 rounded-[2rem] border-4 border-ink bg-butter p-6 text-center md:flex md:items-center md:justify-between md:text-left">
+      <h2 className="mt-16 font-display text-4xl md:text-5xl">Pap meals</h2>
+      <p className="mt-2 text-lg font-medium text-graphite">Hot, filling pap meals.</p>
+      <ul className="mt-6 grid gap-3 md:grid-cols-2">{PAP_MEALS.map((s) => <SideRow key={s.id} s={s} />)}</ul>
+      <h2 className="mt-16 font-display text-4xl md:text-5xl">Cold drinks</h2>
+      <p className="mt-2 text-lg font-medium text-graphite">{DRINK_SIZE} bottles, all R15.</p>
+      <ul className="mt-6 grid gap-3 md:grid-cols-3">{DRINKS.map((s) => <SideRow key={s.id} s={s} />)}</ul>
+      <p className="mt-10 text-center text-lg font-bold">Also on <a href={SITE.uberEats} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 align-middle underline decoration-signal decoration-4 underline-offset-4"><UberEatsLogo className="h-7 w-7" />Uber Eats</a></p>
+      <div className="mt-6 rounded-[2rem] border-4 border-ink bg-butter p-6 text-center md:flex md:items-center md:justify-between md:text-left">
         <p className="font-display text-2xl">{count ? `${count} ${count === 1 ? "item" : "items"} in your order: ${money(subtotal)}` : "Your order is empty. Add something tasty."}</p>
         <Link href={count ? "/order" : "#kotas"} className="mt-4 inline-flex h-14 items-center rounded-full border-4 border-ink bg-ink px-8 text-lg font-extrabold text-white transition hover:bg-graphite md:mt-0">{count ? "Review your order" : "Start with a kota"}</Link>
       </div>

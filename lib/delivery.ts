@@ -1,13 +1,11 @@
-// Delivery rules. Change them here.
+// Areas we serve. Change them here. There is no fixed delivery price: collection is free and
+// anything delivered is confirmed with the customer on WhatsApp (or ordered on Uber Eats).
 export const DELIVERY = {
-  flatFee: 40,
-  // TODO: confirm the real delivery radius, then edit this list of suburbs that get the flat fee.
-  zones: ["Norkem Park", "Kempton Park CBD", "Birchleigh", "Birch Acres", "Glen Marais", "Bonaero Park", "Rhodesfield", "Aston Manor", "Esther Park", "Terenure", "Isando", "Spartan", "Pomona", "Edleen", "Van Riebeeck Park", "Kempton Park West"],
+  zones: [
+    "Norkem Park", "Kempton Park CBD", "Edleen", "Van Riebeeck Park", "Croydon", "Esther Park", "Terenure", "Chloorkop",
+    "Tembisa", "Phomolong", "Glen Marais", "Rhodesfield", "Birchleigh", "Birchleigh North", "Birch Acres", "Bonaero Park",
+    "Aston Manor", "Isando", "Spartan", "Pomona", "Kempton Park West",
+  ],
   otherLabel: "Somewhere else",
 }
 export const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
-/** Delivery fee in rand, or null when the shop has to confirm it. */
-export function deliveryFee(area: string): number | null {
-  if (!area) return null
-  return DELIVERY.zones.includes(area) ? DELIVERY.flatFee : null
-}

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 
 const steps = [
   { t: "Choose your favourites", d: "Pick a kota and any sides from the menu. Leave out anything you do not want." },
-  { t: "Choose delivery or collection", d: "Add the details we need to deliver, or select collection in Norkem Park." },
+  { t: "Choose delivery or collection", d: "Add the details we need to deliver, or select collection in Norkem Park. Also on Uber Eats." },
   { t: "Send your order", d: "Review it, open WhatsApp and send. We will confirm and get cooking." },
   { t: "Pay and enjoy", d: "Pay cash, by EFT or with a card payment link we send on WhatsApp." },
 ]

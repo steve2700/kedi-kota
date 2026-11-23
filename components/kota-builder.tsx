@@ -5,8 +5,8 @@ import { useState } from "react"
 import { KOTAS, cap, money } from "@/lib/menu"
 import { useCart } from "@/components/cart-provider"
 
-const COLOUR: Record<string, string> = { chips: "#f5c33b", tomato: "#e53935", onion: "#c9a0dc", cucumber: "#7cb342", lettuce: "#8bc34a", polony: "#f48fb1", cheese: "#ffb300", Russian: "#a1352c", vienna: "#d2691e", egg: "#fff3c4", ham: "#f4a7a0", patty: "#5d4037", ribs: "#3e2723", pickle: "#6b8e23" }
-const LIGHT = new Set(["chips", "onion", "cucumber", "lettuce", "polony", "cheese", "egg", "ham"])
+const COLOUR: Record<string, string> = { chips: "#f5c33b", tomato: "#e53935", "red onion": "#9c2f5f", cucumber: "#7cb342", lettuce: "#8bc34a", polony: "#f48fb1", cheese: "#ffb300", Russian: "#a1352c", vienna: "#d2691e", egg: "#fff3c4", ham: "#f4a7a0", "chicken patty": "#5d4037", "chicken ribs": "#3e2723", pickle: "#6b8e23" }
+const LIGHT = new Set(["chips", "cucumber", "lettuce", "polony", "cheese", "egg", "ham"])
 
 /** Pick a kota and watch it stack up. Tap an ingredient to leave it out. */
 export function KotaBuilder() {

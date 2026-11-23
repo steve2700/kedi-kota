@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { LinkButton, WhatsAppButton } from "@/components/buttons"
+import { LinkButton, UberEatsButton, WhatsAppButton } from "@/components/buttons"
 import { HeroStage } from "@/components/hero-stage"
 import { PriceTicker } from "@/components/price-ticker"
 import { PhotoRibbon } from "@/components/photo-ribbon"
@@ -11,7 +11,7 @@ import { ScrollText } from "@/components/scroll-text"
 import { CountUp } from "@/components/count-up"
 import { Faq } from "@/components/faq"
 import { CtaBand } from "@/components/cta-band"
-import { KOTAS } from "@/lib/menu"
+import { KOTAS, KOTA_FROM } from "@/lib/menu"
 import { DELIVERY } from "@/lib/delivery"
 import { SITE, ADDRESS_LINE, MAPS_LINK } from "@/lib/site"
 
@@ -19,10 +19,13 @@ export const metadata: Metadata = { title: { absolute: "Kedi Kota | Kota in Nork
 
 const faqs = [
   { q: "What is a kota?", a: "A kota, also called a quarter, is a hollowed quarter loaf of bread filled with chips and fillings such as polony, Russian, egg, cheese and sauce. It is a South African street food favourite." },
-  { q: "How much is delivery?", a: `Delivery is R${DELIVERY.flatFee} in our usual delivery area. If you are further out, we confirm the fee with you on WhatsApp before we deliver.` },
+  { q: "Are you on Uber Eats?", a: "Yes. Kedi Kota is now on Uber Eats, so you can order there too. You can also order on this website and send it on WhatsApp, or collect." },
+  { q: "Do you deliver?", a: "We serve Kempton Park and the areas around it, including Norkem Park, Edleen, Van Riebeeck Park, Croydon, Esther Park, Terenure, Chloorkop, Tembisa, Phomolong, Glen Marais, Rhodesfield and Birchleigh North. Order on Uber Eats, or WhatsApp us and we confirm delivery with you." },
+  { q: "Do you sell pap meals?", a: "Yes. We have pap with hardbody chicken, mogodu, hlogo, a mogodu and hlogo mix, or chicken malana. See the menu for prices." },
+  { q: "What is on a kota?", a: "Our kotas have chips, tomato, lettuce, pickle, red onion, ham, polony, Russian, vienna, egg and cheese, depending on the kota. The patty is a chicken patty, and Kota 4 comes with chicken ribs." },
   { q: "How do I order?", a: "Pick your kota on the menu, check out and send your order on WhatsApp. We confirm it and get cooking." },
   { q: "How can I pay?", a: "You can pay cash, by EFT, or by card using a payment link we send you on WhatsApp." },
-  { q: "Can I collect?", a: `Yes. Collect from ${ADDRESS_LINE}, ${SITE.address.landmark}. There is no delivery fee on collection.` },
+  { q: "Can I collect?", a: `Yes. Collect from ${ADDRESS_LINE}, ${SITE.address.landmark}. Open 7 days, 9am to 7pm.` },
 ]
 
 export default function Home() {
@@ -41,14 +44,15 @@ export default function Home() {
               <span className="mt-2 inline-block -rotate-1 rounded-2xl bg-signal px-3 pb-1 text-white">Sorted.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-graphite sm:text-xl">
-              Loaded, toasted kotas from R20. Pick your favourites, send your order on WhatsApp, then choose delivery across Kempton Park or collection in Norkem Park.
+              Loaded, toasted kotas from R{KOTA_FROM}, plus chips, pap meals and cold drinks. Collect in Norkem Park, order on Uber Eats, or send your order on WhatsApp.
             </p>
             <div className="mt-7 flex flex-wrap gap-2 sm:gap-3">
               <LinkButton href="/menu" size="md" className="sm:h-14 sm:px-9 sm:text-lg">Browse menu</LinkButton>
               <WhatsAppButton size="md" label="WhatsApp" message="Hi Kedi Kota, I would like to order." className="sm:h-14 sm:px-9 sm:text-lg" />
+              <UberEatsButton size="md" look="outline" label="Uber Eats" className="sm:h-14 sm:px-9 sm:text-lg" />
             </div>
             <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-2 text-xs font-extrabold text-graphite">
-              {["Kotas from R20", "Delivery R40", "Cash, EFT or card"].map((item) => (
+              {[`Kotas from R${KOTA_FROM}`, "Now on Uber Eats", "Open 7 days, 9am to 7pm", "Cash, EFT or card"].map((item) => (
                 <li key={item} className="inline-flex items-center gap-2">
                   <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-signal" />
                   {item}
@@ -87,7 +91,7 @@ export default function Home() {
           <p className="kicker text-chrome">WHY KEDI KOTA</p>
           <ScrollText className="mt-5 font-display text-3xl leading-[1.2] md:text-5xl" text="Fresh chips, toasted bread, real fillings and plenty of sauce. Stacked high and served hot. Because it is more than a kota." />
           <div className="mt-14 grid grid-cols-3 gap-6">
-            {[[KOTAS.length, "kotas on the menu", ""], [20, "kotas from", "R"], [40, "flat delivery", "R"]].map(([n, l, p]) => (
+            {[[KOTAS.length, "kotas on the menu", ""], [KOTA_FROM, "kotas from", "R"], [7, "days a week", ""]].map(([n, l, p]) => (
               <div key={l as string} className="border-l-8 border-signal pl-4">
                 <p className="font-display text-5xl md:text-7xl">{p as string}<CountUp to={n as number} /></p>
                 <p className="mt-1 font-bold text-graphite">{l}</p>
@@ -119,10 +123,11 @@ export default function Home() {
             </div>
           </div>
           <div className="rounded-[2rem] border-4 border-white p-6">
-            <p className="font-display text-3xl text-butter">Delivery R{DELIVERY.flatFee}</p>
-            <p className="mt-3 text-lg font-medium text-silver">We deliver across Kempton Park, including:</p>
-            <ul className="mt-4 flex flex-wrap gap-2">{DELIVERY.zones.slice(0, 10).map((z) => <li key={z} className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold">{z}</li>)}</ul>
-            <p className="mt-4 text-sm text-silver">Further out? We confirm the fee on WhatsApp before we deliver.</p>
+            <p className="font-display text-3xl text-butter">Now on Uber Eats</p>
+            <p className="mt-3 text-lg font-medium text-silver">We serve Kempton Park and the areas around it, including:</p>
+            <ul className="mt-4 flex flex-wrap gap-2">{DELIVERY.zones.slice(0, 14).map((z) => <li key={z} className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold">{z}</li>)}</ul>
+            <div className="mt-5 flex flex-wrap gap-3"><UberEatsButton look="butter" size="md" /><WhatsAppButton size="md" label="Ask on WhatsApp" message="Hi Kedi Kota, do you deliver to my area?" /></div>
+            <p className="mt-4 text-sm text-silver">Open 7 days, 9am to 7pm. Collection is free, and we confirm delivery with you on WhatsApp.</p>
           </div>
         </div>
       </section>

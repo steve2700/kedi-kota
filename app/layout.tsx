@@ -14,7 +14,7 @@ import { MobileBar } from "@/components/mobile-bar"
 import { JsonLd } from "@/components/json-ld"
 import { GOOGLE_ADS_CONVERSION_ID } from "@/lib/analytics"
 import { SITE } from "@/lib/site"
-import { KOTAS, SIDES } from "@/lib/menu"
+import { KOTAS, SIDES, PAP_MEALS, DRINKS } from "@/lib/menu"
 import { DELIVERY } from "@/lib/delivery"
 
 export const viewport: Viewport = { themeColor: "#e30613" }
@@ -22,7 +22,7 @@ export const viewport: Viewport = { themeColor: "#e30613" }
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: "Kedi Kota | Kota in Norkem Park, Kempton Park | Order Online", template: "%s | Kedi Kota" },
-  description: "Kedi Kota serves loaded kotas, chips and spiral potatoes in Norkem Park, Kempton Park. Kotas from R20. Order online, collect or get it delivered for R40. Order on WhatsApp.",
+  description: "Kedi Kota serves loaded kotas, chips, spiral potatoes and pap meals in Norkem Park, Kempton Park. Kotas from R25. Open 7 days, 9am to 7pm. Order on WhatsApp or Uber Eats, or collect.",
   keywords: ["kota Kempton Park", "kota Norkem Park", "kota delivery Kempton Park", "kota near me", "street food Kempton Park", "Kedi Kota", "chips and polony kota"],
   applicationName: "Kedi Kota",
   authors: [{ name: "Kedi Kota", url: SITE.url }],
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   icons: { icon: [{ url: "/favicon.ico", sizes: "any" }, { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" }, { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }], apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }], other: [{ rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#e30613" }] },
   manifest: "/site.webmanifest",
-  openGraph: { type: "website", locale: "en_ZA", url: SITE.url, siteName: "Kedi Kota", title: "Kedi Kota | More Than A Kota", description: "Loaded kotas in Norkem Park, Kempton Park. Order online. Delivery R40.", images: [{ url: "/og-image.png", width: 1424, height: 752, alt: "Kedi Kota loaded kota, More Than A Kota" }] },
+  openGraph: { type: "website", locale: "en_ZA", url: SITE.url, siteName: "Kedi Kota", title: "Kedi Kota | More Than A Kota", description: "Loaded kotas in Norkem Park, Kempton Park. Order online or on Uber Eats.", images: [{ url: "/og-image.png", width: 1424, height: 752, alt: "Kedi Kota loaded kota, More Than A Kota" }] },
   twitter: { card: "summary_large_image", title: "Kedi Kota | More Than A Kota", description: "Loaded kotas in Norkem Park, Kempton Park. Order online.", images: ["/og-image.png"] },
   category: "Restaurants",
   other: { "geo.region": "ZA-GP", "geo.placename": "Norkem Park, Kempton Park" },
@@ -50,13 +50,16 @@ const schema = {
   servesCuisine: ["South African", "Street food", "Kota"],
   priceRange: "R",
   address: { "@type": "PostalAddress", streetAddress: `${SITE.address.street}, ${SITE.address.suburb}`, addressLocality: SITE.address.city, addressRegion: "Gauteng", postalCode: SITE.address.postal, addressCountry: "ZA" },
-  sameAs: [SITE.tiktok],
+  sameAs: [SITE.tiktok, SITE.uberEats],
+  openingHours: "Mo-Su 09:00-19:00",
   areaServed: DELIVERY.zones.map((z) => ({ "@type": "Place", name: z })),
   acceptsReservations: false,
   hasMenu: {
     "@type": "Menu", name: "Kedi Kota menu",
     hasMenuSection: [
       { "@type": "MenuSection", name: "Kotas", hasMenuItem: KOTAS.map((k) => ({ "@type": "MenuItem", name: k.name, description: `${k.ingredients.join(", ")}${k.note ? `. ${k.note}` : ""}`, offers: { "@type": "Offer", price: k.price, priceCurrency: "ZAR" } })) },
+      { "@type": "MenuSection", name: "Pap meals", hasMenuItem: PAP_MEALS.map((s) => ({ "@type": "MenuItem", name: s.name, offers: { "@type": "Offer", price: s.price, priceCurrency: "ZAR" } })) },
+      { "@type": "MenuSection", name: "Cold drinks (400ml)", hasMenuItem: DRINKS.map((s) => ({ "@type": "MenuItem", name: s.name, offers: { "@type": "Offer", price: s.price, priceCurrency: "ZAR" } })) },
       { "@type": "MenuSection", name: "Sides", hasMenuItem: SIDES.map((s) => ({ "@type": "MenuItem", name: s.name, offers: { "@type": "Offer", price: s.price, priceCurrency: "ZAR" } })) },
     ],
   },

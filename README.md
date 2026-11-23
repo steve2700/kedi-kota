@@ -13,13 +13,12 @@ pnpm build
 | --- | --- |
 | Phone, WhatsApp, email, address, hours, TikTok | `lib/site.ts` |
 | Menu and prices | `lib/menu.ts` |
-| Delivery fee and delivery suburbs | `lib/delivery.ts` |
+| Areas we serve (suburbs) | `lib/delivery.ts` |
 | The WhatsApp order message | `lib/order.ts` |
 | Colours and animations | `app/globals.css` |
 
 ## TODO before launch
-- Add trading hours in `lib/site.ts` (`hours`).
-- Confirm the delivery radius and edit the suburb list in `lib/delivery.ts`.
+- Check the suburb list in `lib/delivery.ts`.
 - Confirm the email address in `lib/site.ts`.
 - Add the Yoco payment link process (see below).
 

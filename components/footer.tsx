@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { UberEatsLogo } from "@/components/buttons"
 import { Logo } from "@/components/logo"
 import { SITE, ADDRESS_LINE, MAPS_LINK } from "@/lib/site"
 import { DELIVERY, slugify } from "@/lib/delivery"
@@ -15,7 +16,7 @@ export function Footer() {
           <div className="max-w-2xl">
             <p className="kicker text-white/75">Make it a kota day</p>
             <h2 id="footer-order-heading" className="mt-2 font-display text-3xl leading-tight sm:text-4xl">Your next favourite starts here.</h2>
-            <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base">Pick your favourites, order online, then choose delivery across Kempton Park or collection in Norkem Park.</p>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base">Pick your favourites, order online or on Uber Eats, then collect in Norkem Park or ask us about delivery.</p>
           </div>
           <div className="flex shrink-0 flex-wrap gap-3">
             <Link href="/menu" className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 font-extrabold text-ink transition hover:bg-butter">Explore the menu<span aria-hidden="true" className="ml-2 text-xl">→</span></Link>
@@ -26,9 +27,10 @@ export function Footer() {
         <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.35fr_1fr_0.8fr_1.1fr] lg:gap-12">
           <div>
             <Logo tone="dark" />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-silver/80">Loaded kotas, chips and spiral potatoes in Norkem Park, Kempton Park. Made for your next proper kota fix.</p>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-silver/80">Loaded kotas, chips, spiral potatoes and pap meals in Norkem Park, Kempton Park. Made for your next proper kota fix.</p>
             <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-extrabold">
               <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-butter transition hover:text-white">WhatsApp {SITE.phoneDisplay}</a>
+              <a href={SITE.uberEats} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-butter transition hover:text-white"><UberEatsLogo className="h-5 w-5" />Uber Eats</a>
               <a href={SITE.tiktok} target="_blank" rel="noopener noreferrer" className="text-butter transition hover:text-white">TikTok @kedikota</a>
             </div>
           </div>
@@ -52,10 +54,10 @@ export function Footer() {
           </nav>
 
           <section aria-labelledby="footer-delivery-areas">
-            <h2 id="footer-delivery-areas" className={heading}>Delivery areas</h2>
-            <p className="mt-2 text-sm leading-relaxed text-silver/70">Fresh kota delivery around Kempton Park.</p>
+            <h2 id="footer-delivery-areas" className={heading}>Areas we serve</h2>
+            <p className="mt-2 text-sm leading-relaxed text-silver/70">Kempton Park and surrounds. Delivery confirmed on WhatsApp, or find us on Uber Eats.</p>
             <div className="mt-3 grid grid-cols-2 gap-x-3">
-              {DELIVERY.zones.slice(0, 8).map((zone) => (
+              {DELIVERY.zones.slice(0, 12).map((zone) => (
                 <Link key={zone} href={`/kota-delivery-${slugify(zone)}`} className={link}>{zone}</Link>
               ))}
             </div>

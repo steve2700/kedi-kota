@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import { Logo } from "@/components/logo"
 import { useCart } from "@/components/cart-provider"
-import { money } from "@/lib/menu"
+import { KOTA_FROM, money } from "@/lib/menu"
 
 const links = [
   { href: "/menu", label: "Menu" },
@@ -45,7 +45,7 @@ export function Header() {
       <div className="bg-ink text-silver">
         <div className="mx-auto flex h-7 max-w-7xl items-center justify-between gap-3 px-5 text-[10px] font-extrabold uppercase tracking-[0.14em] sm:text-[11px]">
           <p className="flex items-center gap-2"><span aria-hidden="true" className="h-2 w-2 rounded-full bg-signal" />Norkem Park · Kempton Park</p>
-          <p className="hidden text-butter sm:block">Loaded kotas from R20</p>
+          <p className="hidden text-butter sm:block">Open 7 days, 9am to 7pm · Kotas from R{KOTA_FROM}</p>
         </div>
       </div>
       <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between gap-3 px-5 sm:gap-5">

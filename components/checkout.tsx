@@ -1,12 +1,13 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useMemo, useState, type FormEvent } from "react"
+import { useEffect, useState, type FormEvent } from "react"
 import { WhatsAppIcon } from "@/components/icons"
+import { UberEatsLogo } from "@/components/buttons"
 import { useCart } from "@/components/cart-provider"
 import { DELIVERY } from "@/lib/delivery"
-import { PAYMENTS, buildMessage, lineText, totals, type Fulfilment } from "@/lib/order"
-import { ADDRESS_LINE, WA_LINK } from "@/lib/site"
+import { PAYMENTS, buildMessage, type Fulfilment } from "@/lib/order"
+import { ADDRESS_LINE, SITE, WA_LINK } from "@/lib/site"
 import { money } from "@/lib/menu"
 import { trackWhatsAppClick } from "@/lib/analytics"
 
@@ -26,7 +27,6 @@ export function Checkout() {
   const [ref, setRef] = useState("KK000000")
   useEffect(() => setRef(`KK${Math.floor(100000 + Math.random() * 900000)}`), [])
 
-  const t = useMemo(() => totals(lines, fulfilment, area), [lines, fulfilment, area])
   const needsAddress = fulfilment === "delivery"
   const readyToSend = lines.length > 0 && name.trim() && (!needsAddress || (address.trim() && area))
   const message = buildMessage({ ref, lines, fulfilment, area, address, name, phone, payment, notes })
@@ -91,11 +91,11 @@ export function Checkout() {
                   <option value={DELIVERY.otherLabel}>{DELIVERY.otherLabel}</option>
                 </select>
               </label>
-              {area && <p className="rounded-2xl bg-butter px-4 py-3 font-extrabold">{t.toConfirm ? "We will confirm your delivery fee on WhatsApp." : `Delivery in your area is ${money(DELIVERY.flatFee)}.`}</p>}
+              <p className="rounded-2xl bg-butter px-4 py-3 font-extrabold">We confirm your delivery with you on WhatsApp. Prefer Uber Eats? <a href={SITE.uberEats} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 align-middle underline decoration-signal decoration-4 underline-offset-4"><UberEatsLogo className="h-6 w-6" />Order on Uber Eats</a>.</p>
               <label className="block"><span className={label}>Delivery address <span aria-hidden="true">*</span><span className="sr-only">(required)</span></span><input required className={`${field} mt-2`} value={address} onChange={(e) => setAddress(e.target.value)} placeholder="House number, street, complex" autoComplete="street-address" /></label>
             </div>
           ) : (
-            <p className="mt-5 rounded-2xl bg-butter px-4 py-3 font-extrabold">Collect at {ADDRESS_LINE}. No delivery fee.</p>
+            <p className="mt-5 rounded-2xl bg-butter px-4 py-3 font-extrabold">Collect at {ADDRESS_LINE}. Open 7 days, 9am to 7pm.</p>
           )}
         </section>
 
@@ -107,7 +107,7 @@ export function Checkout() {
           <fieldset className="mt-6"><legend className={label}>How will you pay?</legend>
             <div className="mt-3 flex flex-wrap gap-3">{PAYMENTS.map((p) => <button key={p} type="button" aria-pressed={payment === p} onClick={() => setPayment(p)} className={chip(payment === p)}>{p}</button>)}</div>
           </fieldset>
-          <label className="mt-6 block"><span className={label}>Anything else?</span><input className={`${field} mt-2`} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="For example: which 330ml drink with my combo" /></label>
+          <label className="mt-6 block"><span className={label}>Anything else?</span><input className={`${field} mt-2`} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="For example: which cold drink with my combo" /></label>
         </section>
       </form>
 
@@ -115,9 +115,7 @@ export function Checkout() {
         <div className="rounded-[2rem] border-4 border-ink bg-ink p-6 text-white shadow-[8px_8px_0_0_#e30613]">
           <div className="flex items-baseline justify-between"><p className="font-display text-2xl">Summary</p><p className="kicker text-butter">{ref}</p></div>
           <dl className="mt-5 space-y-3 text-lg">
-            <div className="flex justify-between"><dt className="text-silver">Subtotal</dt><dd className="font-extrabold">{money(subtotal)}</dd></div>
-            <div className="flex justify-between"><dt className="text-silver">Delivery</dt><dd className="font-extrabold">{fulfilment === "collection" ? "None" : !area ? "Choose an area" : t.toConfirm ? "To be confirmed" : money(t.fee)}</dd></div>
-            <div className="flex justify-between border-t-2 border-white/20 pt-3 text-2xl"><dt className="font-display">Total</dt><dd className="font-display text-butter">{t.toConfirm ? `${money(t.subtotal)} + delivery` : money(t.total)}</dd></div>
+            <div className="flex justify-between border-t-2 border-white/20 pt-3 text-2xl"><dt className="font-display">Total</dt><dd className="font-display text-butter">{money(subtotal)}</dd></div>
           </dl>
           <button id="send-order" type="submit" form="checkout-form" disabled={!readyToSend} className="mt-6 flex h-16 w-full items-center justify-center gap-3 rounded-full border-4 border-white bg-[#25D366] text-lg font-extrabold text-ink transition hover:bg-[#1fbd5b] active:scale-[0.98] disabled:cursor-not-allowed disabled:border-white/30 disabled:bg-white/10 disabled:text-white/50">
             <WhatsAppIcon className="h-7 w-7" />Send on WhatsApp

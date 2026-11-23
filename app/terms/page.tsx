@@ -11,8 +11,8 @@ export default function Page() {
         <p className={p}>By ordering from Kedi Kota you agree to these terms.</p>
         <h2 className={h}>Orders</h2>
         <p className={p}>An order is only confirmed once we confirm it with you on WhatsApp. Prices on the website are in rand and may change. The total we confirm with you is the price you pay.</p>
-        <h2 className={h}>Delivery fees</h2>
-        <p className={p}>Delivery is R40 in our usual delivery area. Outside it, the fee is confirmed with you before delivery.</p>
+        <h2 className={h}>Delivery</h2>
+        <p className={p}>Collection is free. If you want delivery, we confirm the details, and any delivery cost, with you before we deliver. You can also order from us on Uber Eats, where the Uber Eats fees and terms apply.</p>
         <h2 className={h}>Allergies</h2>
         <p className={p}>Our food contains bread, egg, dairy and meat. Tell us about allergies before you order. We cannot guarantee any item is free of allergens.</p>
         <h2 className={h}>Photos</h2>

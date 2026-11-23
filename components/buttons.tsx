@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import type { ReactNode } from "react"
 import { PhoneIcon, WhatsAppIcon } from "@/components/icons"
@@ -26,6 +27,12 @@ export function LinkButton({ href, children, size = "lg", look = "red", classNam
 }
 export function CallButton({ size = "lg", look = "dark", label = "Call Now", className = "" }: { size?: Size; look?: Look; label?: string; className?: string }) {
   return <a href={`tel:${SITE.phoneTel}`} onClick={trackCallClick} className={`${base} ${sizes[size]} ${looks[look]} ${className}`}><PhoneIcon className="h-5 w-5" /><Roll>{label}</Roll></a>
+}
+export function UberEatsLogo({ className = "h-6 w-6" }: { className?: string }) {
+  return <Image src="/ubereats-logo.png" alt="" width={64} height={64} aria-hidden="true" className={`${className} shrink-0 rounded-md`} />
+}
+export function UberEatsButton({ size = "lg", look = "dark", label = "Order on Uber Eats", className = "" }: { size?: Size; look?: Look; label?: string; className?: string }) {
+  return <a href={SITE.uberEats} target="_blank" rel="noopener noreferrer" className={`${base} ${sizes[size]} ${looks[look]} ${className}`}><UberEatsLogo className="h-7 w-7" /><Roll>{label}</Roll></a>
 }
 export function WhatsAppButton({ size = "lg", look = "green", label = "WhatsApp Us", message = "Hi Kedi Kota, I have a question.", className = "" }: { size?: Size; look?: Look; label?: string; message?: string; className?: string }) {
   return <a href={WA_LINK(message)} target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppClick} className={`${base} ${sizes[size]} ${looks[look]} ${className}`}><WhatsAppIcon className="h-6 w-6" /><Roll>{label}</Roll></a>
