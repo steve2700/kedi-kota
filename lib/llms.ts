@@ -12,6 +12,8 @@ WhatsApp: ${SITE.phoneDisplay}
 Address: ${ADDRESS_LINE} (${SITE.address.landmark})
 Hours: ${SITE.hours}
 Uber Eats: ${SITE.uberEats}
+Instagram: ${SITE.instagram}
+Facebook: ${SITE.facebook}
 TikTok: ${SITE.tiktok}
 
 ## Menu

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { UberEatsLogo } from "@/components/buttons"
+import { SocialLinks } from "@/components/social-links"
 import { Logo } from "@/components/logo"
 import { SITE, ADDRESS_LINE, MAPS_LINK } from "@/lib/site"
 import { DELIVERY, slugify } from "@/lib/delivery"
@@ -31,8 +32,8 @@ export function Footer() {
             <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-extrabold">
               <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-butter transition hover:text-white">WhatsApp {SITE.phoneDisplay}</a>
               <a href={SITE.uberEats} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-butter transition hover:text-white"><UberEatsLogo className="h-5 w-5" />Uber Eats</a>
-              <a href={SITE.tiktok} target="_blank" rel="noopener noreferrer" className="text-butter transition hover:text-white">TikTok @kedikota</a>
             </div>
+            <SocialLinks tone="dark" className="mt-4" />
           </div>
 
           <section aria-labelledby="footer-find-us">

@@ -5,6 +5,7 @@ import { CtaBand } from "@/components/cta-band"
 import { JsonLd } from "@/components/json-ld"
 import { DELIVERY, slugify } from "@/lib/delivery"
 import { UberEatsButton, WhatsAppButton } from "@/components/buttons"
+import { SocialLinks } from "@/components/social-links"
 import { SITE, ADDRESS_LINE, MAPS_LINK } from "@/lib/site"
 
 export const metadata: Metadata = { title: "Find Us: 122 Storms Road, Norkem Park, Kempton Park", description: "Kedi Kota is at 122 Storms Road, Norkem Park, Kempton Park, by Green Gate. Open 7 days, 9am to 7pm. Collect, order on WhatsApp or find us on Uber Eats.", alternates: { canonical: "/find-us" } }
@@ -21,7 +22,8 @@ export default function FindUs() {
           <h3 className="mt-8 font-display text-2xl">Opening times</h3>
           <p className="mt-2 text-lg font-medium">{SITE.hours}</p>
           <h3 className="mt-8 font-display text-2xl">Talk to us</h3>
-          <p className="mt-2 text-lg font-medium">WhatsApp {SITE.phoneDisplay}<br /><a className="font-extrabold text-signal underline" href={SITE.tiktok} target="_blank" rel="noopener noreferrer">TikTok @kedikota</a></p>
+          <p className="mt-2 text-lg font-medium">WhatsApp {SITE.phoneDisplay}</p>
+          <SocialLinks tone="light" className="mt-4" />
         </div>
         <div className="rounded-[2rem] border-4 border-ink bg-butter p-8 shadow-[6px_6px_0_0_#0e0e0e]">
           <h2 className="font-display text-3xl">Areas we serve</h2>

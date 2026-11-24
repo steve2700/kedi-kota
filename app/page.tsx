@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { LinkButton, UberEatsButton, WhatsAppButton } from "@/components/buttons"
+import { SocialLinks } from "@/components/social-links"
 import { HeroStage } from "@/components/hero-stage"
 import { PriceTicker } from "@/components/price-ticker"
 import { PhotoRibbon } from "@/components/photo-ribbon"
@@ -120,6 +121,7 @@ export default function Home() {
             <div className="mt-6 flex flex-wrap gap-3">
               <a href={MAPS_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 items-center rounded-full bg-butter px-7 font-extrabold text-ink transition hover:brightness-95">Get directions</a>
               <a href={SITE.tiktok} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 items-center rounded-full border-2 border-white/70 px-7 font-extrabold transition hover:bg-white hover:text-ink">Watch us on TikTok</a>
+              <SocialLinks tone="dark" />
             </div>
           </div>
           <div className="rounded-[2rem] border-4 border-white p-6">

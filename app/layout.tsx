@@ -50,7 +50,7 @@ const schema = {
   servesCuisine: ["South African", "Street food", "Kota"],
   priceRange: "R",
   address: { "@type": "PostalAddress", streetAddress: `${SITE.address.street}, ${SITE.address.suburb}`, addressLocality: SITE.address.city, addressRegion: "Gauteng", postalCode: SITE.address.postal, addressCountry: "ZA" },
-  sameAs: [SITE.tiktok, SITE.uberEats],
+  sameAs: [SITE.instagram, SITE.facebook, SITE.tiktok, SITE.uberEats],
   openingHours: "Mo-Su 09:00-19:00",
   areaServed: DELIVERY.zones.map((z) => ({ "@type": "Place", name: z })),
   acceptsReservations: false,

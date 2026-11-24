@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs"
 import { WordReveal } from "@/components/word-reveal"
 import { CtaBand } from "@/components/cta-band"
 import { PHOTOS } from "@/components/photo-ribbon"
-import { SITE } from "@/lib/site"
+import { SocialLinks } from "@/components/social-links"
 
 export const metadata: Metadata = { title: "Gallery: Our Loaded Kotas", description: "Photos of Kedi Kota's loaded, toasted kotas with chips, egg, patty, cheese and sauce in Norkem Park, Kempton Park.", alternates: { canonical: "/gallery" } }
 export default function GalleryPage() {
@@ -32,7 +32,8 @@ export default function GalleryPage() {
             </li>
           ))}
         </ul>
-        <p className="mt-10 text-lg font-medium">More on <a className="font-extrabold text-signal underline" href={SITE.tiktok} target="_blank" rel="noopener noreferrer">TikTok @kedikota</a>.</p>
+        <p className="mt-10 text-lg font-extrabold">Follow us for more kotas</p>
+        <SocialLinks tone="light" className="mt-3" />
       </section>
       <CtaBand />
     </>
