@@ -12,6 +12,7 @@ export const SITE = {
   tiktok: "https://www.tiktok.com/@kedikota",
   instagram: "https://www.instagram.com/kedikota",
   facebook: "https://www.facebook.com/profile.php?id=61596777394162",
+  googleReview: "https://g.page/r/CXq2SCERLfQgEBM/review",
   hours: "Open 7 days, 9am to 7pm" as string | null,
   uberEats: "https://www.ubereats.com/za/store/kedi-kota/Ll98wZE4U5mLRezsb-tsqg?diningMode=DELIVERY",
 }

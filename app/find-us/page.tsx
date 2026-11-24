@@ -24,6 +24,7 @@ export default function FindUs() {
           <h3 className="mt-8 font-display text-2xl">Talk to us</h3>
           <p className="mt-2 text-lg font-medium">WhatsApp {SITE.phoneDisplay}</p>
           <SocialLinks tone="light" className="mt-4" />
+          <p className="mt-6 text-lg font-medium">Enjoyed your kota? <a className="font-extrabold text-signal underline" href={SITE.googleReview} target="_blank" rel="noopener noreferrer">Leave us a Google review</a>. It helps a lot.</p>
         </div>
         <div className="rounded-[2rem] border-4 border-ink bg-butter p-8 shadow-[6px_6px_0_0_#0e0e0e]">
           <h2 className="font-display text-3xl">Areas we serve</h2>

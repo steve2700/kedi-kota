@@ -34,6 +34,7 @@ export function Footer() {
               <a href={SITE.uberEats} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-butter transition hover:text-white"><UberEatsLogo className="h-5 w-5" />Uber Eats</a>
             </div>
             <SocialLinks tone="dark" className="mt-4" />
+            <a href={SITE.googleReview} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-butter transition hover:text-white"><span aria-hidden="true">★★★★★</span>Review us on Google</a>
           </div>
 
           <section aria-labelledby="footer-find-us">
