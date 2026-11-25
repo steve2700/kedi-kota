@@ -14,7 +14,7 @@ import { MobileBar } from "@/components/mobile-bar"
 import { JsonLd } from "@/components/json-ld"
 import { GOOGLE_ADS_CONVERSION_ID } from "@/lib/analytics"
 import { SITE } from "@/lib/site"
-import { KOTAS, SIDES, PAP_MEALS, DRINKS } from "@/lib/menu"
+import { KOTAS, OTHER_SECTIONS, kotaLabel } from "@/lib/menu"
 import { DELIVERY } from "@/lib/delivery"
 
 export const viewport: Viewport = { themeColor: "#e30613" }
@@ -22,7 +22,7 @@ export const viewport: Viewport = { themeColor: "#e30613" }
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: "Kedi Kota | Kota in Norkem Park, Kempton Park | Order Online", template: "%s | Kedi Kota" },
-  description: "Kedi Kota serves loaded kotas, chips, spiral potatoes and pap meals in Norkem Park, Kempton Park. Kotas from R25. Open 7 days, 9am to 7pm. Order on WhatsApp or Uber Eats, or collect.",
+  description: "Kedi Kota serves loaded kotas, chips, pap meals and more in Norkem Park, Kempton Park. Kotas from R35. Open 7 days, 9am to 7pm. Order on WhatsApp or Uber Eats, or collect.",
   keywords: ["kota Kempton Park", "kota Norkem Park", "kota delivery Kempton Park", "kota near me", "street food Kempton Park", "Kedi Kota", "chips and polony kota"],
   applicationName: "Kedi Kota",
   authors: [{ name: "Kedi Kota", url: SITE.url }],
@@ -57,10 +57,8 @@ const schema = {
   hasMenu: {
     "@type": "Menu", name: "Kedi Kota menu",
     hasMenuSection: [
-      { "@type": "MenuSection", name: "Kotas", hasMenuItem: KOTAS.map((k) => ({ "@type": "MenuItem", name: k.name, description: `${k.ingredients.join(", ")}${k.note ? `. ${k.note}` : ""}`, offers: { "@type": "Offer", price: k.price, priceCurrency: "ZAR" } })) },
-      { "@type": "MenuSection", name: "Pap meals", hasMenuItem: PAP_MEALS.map((s) => ({ "@type": "MenuItem", name: s.name, offers: { "@type": "Offer", price: s.price, priceCurrency: "ZAR" } })) },
-      { "@type": "MenuSection", name: "Cold drinks (400ml)", hasMenuItem: DRINKS.map((s) => ({ "@type": "MenuItem", name: s.name, offers: { "@type": "Offer", price: s.price, priceCurrency: "ZAR" } })) },
-      { "@type": "MenuSection", name: "Sides", hasMenuItem: SIDES.map((s) => ({ "@type": "MenuItem", name: s.name, offers: { "@type": "Offer", price: s.price, priceCurrency: "ZAR" } })) },
+      { "@type": "MenuSection", name: "Kotas", hasMenuItem: KOTAS.map((k) => ({ "@type": "MenuItem", name: kotaLabel(k), description: `${k.ingredients.join(", ")}${k.note ? `. ${k.note}` : ""}`, offers: { "@type": "Offer", price: k.price, priceCurrency: "ZAR" } })) },
+      ...OTHER_SECTIONS.map((sec) => ({ "@type": "MenuSection", name: sec.title, hasMenuItem: sec.items.map((s) => ({ "@type": "MenuItem", name: s.name, offers: { "@type": "Offer", price: s.price, priceCurrency: "ZAR" } })) })),
     ],
   },
 }

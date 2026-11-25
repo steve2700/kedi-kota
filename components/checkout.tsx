@@ -107,7 +107,7 @@ export function Checkout() {
           <fieldset className="mt-6"><legend className={label}>How will you pay?</legend>
             <div className="mt-3 flex flex-wrap gap-3">{PAYMENTS.map((p) => <button key={p} type="button" aria-pressed={payment === p} onClick={() => setPayment(p)} className={chip(payment === p)}>{p}</button>)}</div>
           </fieldset>
-          <label className="mt-6 block"><span className={label}>Anything else?</span><input className={`${field} mt-2`} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="For example: which cold drink with my combo" /></label>
+          <label className="mt-6 block"><span className={label}>Anything else?</span><input className={`${field} mt-2`} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="For example: no onion, or extra cheese" /></label>
         </section>
       </form>
 

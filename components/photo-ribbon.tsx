@@ -1,10 +1,15 @@
 import Image from "next/image"
 export const PHOTOS: { file: string; alt: string; title: string }[] = [
-  { file: "kedi-kota-garlic-toasted-kota-twin-stack-on-board.jpg", alt: "Two garlic toasted Kedi Kota kotas stacked on a board", title: "Twin stack" },
-  { file: "kedi-kota-stacked-kota-with-chips-egg-and-peri-peri-sauce.jpg", alt: "Kota stacked with chips, egg and peri peri sauce", title: "Peri peri stack" },
-  { file: "kedi-kota-loaded-kota-with-polony-egg-cheese-and-chips.jpg", alt: "Loaded kota with polony, egg, cheese and chips", title: "Loaded kota" },
-  { file: "kedi-kota-toasted-kota-with-egg-patty-cheese-and-sauce.jpg", alt: "Toasted kota with egg, patty, cheese and sauce", title: "Toasted and saucy" },
-  { file: "kedi-kota-kota-with-chips-egg-patty-and-russian.jpg", alt: "Kota with chips, egg, patty and Russian", title: "Patty and Russian" },
+  { file: "kedi-kota-tall-loaded-kota-vienna-cheese-egg.jpg", alt: "Tall loaded Kedi Kota kota with vienna, cheese, egg and chips on a garlic toasted loaf", title: "Stacked high" },
+  { file: "kedi-kota-garlic-toasted-kota-peri-peri-sauce.jpg", alt: "Garlic toasted Kedi Kota kota with egg, cheese and peri peri sauce", title: "Garlic toasted" },
+  { file: "kedi-kota-loaded-kota-with-sprite.jpg", alt: "Loaded Kedi Kota kota with cheese sauce and a cold Sprite", title: "Kota and a Sprite" },
+  { file: "kedi-kota-loaded-kota-with-fanta.jpg", alt: "Loaded Kedi Kota kota with vienna, cheese and a cold Fanta", title: "Kota and a Fanta" },
+  { file: "kedi-kota-pap-hardbody-chicken-coleslaw-morogo.jpg", alt: "Pap with hardbody chicken, coleslaw and morogo", title: "Pap and hardbody chicken" },
+  { file: "kedi-kota-pap-mogodu-morogo-beetroot.jpg", alt: "Pap with mogodu, morogo and beetroot", title: "Pap and mogodu" },
+  { file: "kedi-kota-pap-chicken-malana-morogo-beetroot.jpg", alt: "Pap with chicken malana, morogo and beetroot", title: "Pap and chicken malana" },
+  { file: "kedi-kota-pap-chicken-malana-with-coca-cola.jpg", alt: "Pap with chicken malana, morogo and beetroot next to a Coca-Cola", title: "Pap meal and a Coke" },
+  { file: "kedi-kota-pap-slow-cooked-meat-coleslaw-morogo.jpg", alt: "Pap with slow cooked meat, coleslaw and morogo", title: "Slow cooked and tender" },
+  { file: "kedi-kota-shop-front-norkem-park.jpg", alt: "The Kedi Kota shop front in Norkem Park, Kempton Park, with outdoor seating", title: "Find us in Norkem Park" },
 ]
 export function PhotoRibbon() {
   const row = (hidden: boolean) => PHOTOS.map((p) => (

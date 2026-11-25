@@ -2,17 +2,17 @@ import Image from "next/image"
 import { KOTA_FROM } from "@/lib/menu"
 
 const slides = [
-  "kedi-kota-garlic-toasted-kota-twin-stack-on-board.jpg",
-  "kedi-kota-stacked-kota-with-chips-egg-and-peri-peri-sauce.jpg",
-  "kedi-kota-loaded-kota-with-polony-egg-cheese-and-chips.jpg",
-  "kedi-kota-toasted-kota-with-egg-patty-cheese-and-sauce.jpg",
-  "kedi-kota-kota-with-chips-egg-patty-and-russian.jpg",
+  "kedi-kota-tall-loaded-kota-vienna-cheese-egg.jpg",
+  "kedi-kota-garlic-toasted-kota-peri-peri-sauce.jpg",
+  "kedi-kota-pap-hardbody-chicken-coleslaw-morogo.jpg",
+  "kedi-kota-loaded-kota-with-fanta.jpg",
+  "kedi-kota-pap-mogodu-morogo-beetroot.jpg",
 ]
 
 export function HeroStage() {
   return (
     <div className="relative mx-auto w-full max-w-[38rem] lg:max-w-none">
-      <figure className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border-[3px] border-ink bg-ink shadow-[10px_10px_0_0_#e30613]" role="img" aria-label="Two loaded Kedi Kota kotas with chips, egg, sauces and toasted bread">
+      <figure className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border-[3px] border-ink bg-ink shadow-[10px_10px_0_0_#e30613]" role="img" aria-label="Loaded Kedi Kota kotas and hot pap meals">
         {slides.map((file, i) => (
           <div key={file} className="slide absolute inset-0" style={{ animationDelay: `${i * 6}s` }}>
             <Image

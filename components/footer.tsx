@@ -28,7 +28,7 @@ export function Footer() {
         <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.35fr_1fr_0.8fr_1.1fr] lg:gap-12">
           <div>
             <Logo tone="dark" />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-silver/80">Loaded kotas, chips, spiral potatoes and pap meals in Norkem Park, Kempton Park. Made for your next proper kota fix.</p>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-silver/80">Loaded kotas, chips, pap meals and more in Norkem Park, Kempton Park. Made for your next proper kota fix.</p>
             <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-extrabold">
               <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-butter transition hover:text-white">WhatsApp {SITE.phoneDisplay}</a>
               <a href={SITE.uberEats} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-butter transition hover:text-white"><UberEatsLogo className="h-5 w-5" />Uber Eats</a>

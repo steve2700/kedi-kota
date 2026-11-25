@@ -2,10 +2,10 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { KOTAS, cap, money } from "@/lib/menu"
+import { KOTAS, kotaLabel, cap, money } from "@/lib/menu"
 import { useCart } from "@/components/cart-provider"
 
-const COLOUR: Record<string, string> = { chips: "#f5c33b", tomato: "#e53935", "red onion": "#9c2f5f", cucumber: "#7cb342", lettuce: "#8bc34a", polony: "#f48fb1", cheese: "#ffb300", Russian: "#a1352c", vienna: "#d2691e", egg: "#fff3c4", ham: "#f4a7a0", "chicken patty": "#5d4037", "chicken ribs": "#3e2723", pickle: "#6b8e23" }
+const COLOUR: Record<string, string> = { chips: "#f5c33b", tomato: "#e53935", "red onion": "#9c2f5f", cucumber: "#7cb342", lettuce: "#8bc34a", polony: "#f48fb1", cheese: "#ffb300", Russian: "#a1352c", vienna: "#d2691e", egg: "#fff3c4", ham: "#f4a7a0", "chicken patty": "#5d4037", "boneless chicken rib": "#3e2723", pickle: "#6b8e23", atchaar: "#e6a117" }
 const LIGHT = new Set(["chips", "cucumber", "lettuce", "polony", "cheese", "egg", "ham"])
 
 /** Pick a kota and watch it stack up. Tap an ingredient to leave it out. */
@@ -18,13 +18,13 @@ export function KotaBuilder() {
   const layers = [...kota.ingredients].reverse()
   const pick = (next: string) => { setId(next); setRemoved([]) }
   const toggle = (ing: string) => setRemoved((r) => (r.includes(ing) ? r.filter((x) => x !== ing) : [...r, ing]))
-  const addIt = () => { add({ id: kota.id, name: kota.name, price: kota.price }, { removed }); setAdded((n) => n + 1) }
+  const addIt = () => { add({ id: kota.id, name: kotaLabel(kota), price: kota.price }, { removed }); setAdded((n) => n + 1) }
   return (
     <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
       <div role="tablist" aria-label="Choose a kota" className="grid gap-3 self-start">
         {KOTAS.map((k) => (
           <button key={k.id} role="tab" type="button" aria-selected={k.id === id} onClick={() => pick(k.id)} className={`flex items-center justify-between gap-4 rounded-2xl border-4 border-ink px-5 py-4 text-left transition active:scale-[0.99] ${k.id === id ? "bg-butter shadow-[6px_6px_0_0_#0e0e0e]" : "bg-white hover:bg-silver"}`}>
-            <span><span className="block font-display text-2xl">{k.name}</span><span className="text-sm font-bold text-graphite">{k.note ?? `${k.ingredients.length} ingredients`}</span></span>
+            <span><span className="block font-display text-2xl">{k.name}</span><span className="block text-xs font-extrabold uppercase tracking-widest text-chrome">{k.tag}</span><span className="text-sm font-bold text-graphite">{k.note ?? `${k.ingredients.length} ingredients`}</span></span>
             <span className="rounded-full bg-signal px-4 py-1.5 font-display text-xl text-white">{money(k.price)}</span>
           </button>
         ))}

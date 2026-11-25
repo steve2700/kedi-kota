@@ -16,10 +16,10 @@ export default function GalleryPage() {
           <div>
             <Breadcrumbs items={[{ name: "Gallery", href: "/gallery" }]} tone="dark" />
             <WordReveal as="h1" text="Look at these kotas" mark={["kotas"]} className="mt-5 max-w-4xl text-4xl leading-[1.08] md:text-5xl" />
-            <p className="mt-4 max-w-xl text-lg font-medium leading-relaxed text-silver">Real kotas from our kitchen. Hungry yet?</p>
+            <p className="mt-4 max-w-xl text-lg font-medium leading-relaxed text-silver">Real kotas and pap meals from our kitchen. Hungry yet?</p>
           </div>
           <div className="relative mx-auto aspect-[4/3] w-full max-w-xl overflow-hidden rounded-[2rem] border-4 border-white bg-silver shadow-[8px_8px_0_0_#0e0e0e] lg:max-w-none">
-            <Image src="/kedi-kota-garlic-toasted-kota-twin-stack-on-board.jpg" alt="Two garlic toasted Kedi Kota kotas on a board" fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+            <Image src="/kedi-kota-tall-loaded-kota-vienna-cheese-egg.jpg" alt="Tall loaded Kedi Kota kota with vienna, cheese and egg" fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
           </div>
         </div>
       </section>
@@ -27,7 +27,7 @@ export default function GalleryPage() {
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PHOTOS.map((p) => (
             <li key={p.file} className="overflow-hidden rounded-[2rem] border-4 border-ink bg-white shadow-[6px_6px_0_0_#0e0e0e]">
-              <div className="relative aspect-[4/5]"><Image src={`/${p.file}`} alt={p.alt} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover" /></div>
+              <div className="relative aspect-[3/2]"><Image src={`/${p.file}`} alt={p.alt} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover" /></div>
               <p className="px-5 py-4 font-display text-2xl">{p.title}</p>
             </li>
           ))}

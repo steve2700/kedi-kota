@@ -1,9 +1,10 @@
 import Link from "next/link"
-import { KOTAS, SIDES, money } from "@/lib/menu"
+import { KOTAS, SIDES, PAP_MEALS, kotaLabel, money } from "@/lib/menu"
 
 const items = [
-  ...KOTAS.map((k) => ({ name: k.name, price: money(k.price) })),
+  ...KOTAS.map((k) => ({ name: kotaLabel(k), price: money(k.price) })),
   ...SIDES.map((s) => ({ name: s.name, price: money(s.price) })),
+  ...PAP_MEALS.filter((s) => s.id !== "pap-mix").map((s) => ({ name: s.name, price: money(s.price) })),
 ]
 
 export function PriceTicker() {

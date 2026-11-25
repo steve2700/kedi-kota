@@ -3,7 +3,8 @@
 import Link from "next/link"
 import { UberEatsLogo } from "@/components/buttons"
 import { useState } from "react"
-import { KOTAS, SIDES, PAP_MEALS, DRINKS, DRINK_SIZE, cap, money } from "@/lib/menu"
+import { KOTAS, OTHER_SECTIONS, DRINK_SIZE, kotaLabel, cap, money } from "@/lib/menu"
+import type { Side } from "@/lib/menu"
 import { SITE } from "@/lib/site"
 import { useCart } from "@/components/cart-provider"
 
@@ -30,14 +31,14 @@ function KotaCard({ k }: { k: (typeof KOTAS)[number] }) {
         </div>
       )}
       <div className="mt-auto flex flex-col gap-3 pt-6">
-        <button type="button" onClick={() => { add({ id: k.id, name: k.name, price: k.price }, { removed }); setFlash((n) => n + 1) }} className="h-12 w-full rounded-full border-4 border-ink bg-signal px-6 text-base font-extrabold text-white transition hover:bg-signal-dark active:scale-95">Add to order</button>
+        <button type="button" onClick={() => { add({ id: k.id, name: kotaLabel(k), price: k.price }, { removed }); setFlash((n) => n + 1) }} className="h-12 w-full rounded-full border-4 border-ink bg-signal px-6 text-base font-extrabold text-white transition hover:bg-signal-dark active:scale-95">Add to order</button>
         {flash > 0 && <span key={flash} className="pop self-start rounded-full bg-butter px-4 py-2 text-sm font-extrabold" role="status"><Link href="/order">Added · review order</Link></span>}
       </div>
     </article>
   )
 }
 
-function SideRow({ s }: { s: (typeof SIDES)[number] }) {
+function SideRow({ s }: { s: Side }) {
   const { add, lines, setQty } = useCart()
   const line = lines.find((l) => l.id === s.id && !l.removed.length && !l.note)
   return (
@@ -58,26 +59,25 @@ function SideRow({ s }: { s: (typeof SIDES)[number] }) {
 
 export function MenuBrowser() {
   const { count, subtotal } = useCart()
-  const groups = Array.from(new Set(SIDES.map((s) => s.group)))
+  const notes: Record<string, string> = {
+    "Chips and snacks": "Hot chips, Russian and magwinya.",
+    "Pap meals": "Hot, filling pap meals.",
+    "Meat sides": "Just the meat, add pap and sides to build your own plate.",
+    "Sides": "Add a side to any meal.",
+    "Extras": "Add extra to your kota.",
+  }
   return (
     <div>
       <h2 className="font-display text-4xl md:text-5xl">Kotas</h2>
       <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">{KOTAS.map((k) => <KotaCard key={k.id} k={k} />)}</div>
-      <h2 className="mt-16 font-display text-4xl md:text-5xl">Chips and sides</h2>
-      <div className="mt-8 grid gap-8 md:grid-cols-2">
-        {groups.map((g) => (
-          <div key={g}>
-            <h3 className="font-display text-2xl text-signal">{g}</h3>
-            <ul className="mt-3 grid gap-3">{SIDES.filter((s) => s.group === g).map((s) => <SideRow key={s.id} s={s} />)}</ul>
-          </div>
-        ))}
-      </div>
-      <h2 className="mt-16 font-display text-4xl md:text-5xl">Pap meals</h2>
-      <p className="mt-2 text-lg font-medium text-graphite">Hot, filling pap meals.</p>
-      <ul className="mt-6 grid gap-3 md:grid-cols-2">{PAP_MEALS.map((s) => <SideRow key={s.id} s={s} />)}</ul>
-      <h2 className="mt-16 font-display text-4xl md:text-5xl">Cold drinks</h2>
-      <p className="mt-2 text-lg font-medium text-graphite">{DRINK_SIZE} bottles, all R15.</p>
-      <ul className="mt-6 grid gap-3 md:grid-cols-3">{DRINKS.map((s) => <SideRow key={s.id} s={s} />)}</ul>
+      {OTHER_SECTIONS.map((sec) => (
+        <section key={sec.title}>
+          <h2 className="mt-16 font-display text-4xl md:text-5xl">{sec.title}</h2>
+          {notes[sec.title] && <p className="mt-2 text-lg font-medium text-graphite">{notes[sec.title]}</p>}
+          {sec.title.startsWith("Cold drinks") && <p className="mt-2 text-lg font-medium text-graphite">{DRINK_SIZE} bottles, all R15.</p>}
+          <ul className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3">{sec.items.map((s) => <SideRow key={s.id} s={s} />)}</ul>
+        </section>
+      ))}
       <p className="mt-10 text-center text-lg font-bold">Also on <a href={SITE.uberEats} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 align-middle underline decoration-signal decoration-4 underline-offset-4"><UberEatsLogo className="h-7 w-7" />Uber Eats</a></p>
       <div className="mt-6 rounded-[2rem] border-4 border-ink bg-butter p-6 text-center md:flex md:items-center md:justify-between md:text-left">
         <p className="font-display text-2xl">{count ? `${count} ${count === 1 ? "item" : "items"} in your order: ${money(subtotal)}` : "Your order is empty. Add something tasty."}</p>

@@ -23,7 +23,7 @@ const faqs = [
   { q: "Are you on Uber Eats?", a: "Yes. Kedi Kota is now on Uber Eats, so you can order there too. You can also order on this website and send it on WhatsApp, or collect." },
   { q: "Do you deliver?", a: "We serve Kempton Park and the areas around it, including Norkem Park, Edleen, Van Riebeeck Park, Croydon, Esther Park, Terenure, Chloorkop, Tembisa, Phomolong, Glen Marais, Rhodesfield and Birchleigh North. Order on Uber Eats, or WhatsApp us and we confirm delivery with you." },
   { q: "Do you sell pap meals?", a: "Yes. We have pap with hardbody chicken, mogodu, hlogo, a mogodu and hlogo mix, or chicken malana. See the menu for prices." },
-  { q: "What is on a kota?", a: "Our kotas have chips, tomato, lettuce, pickle, red onion, ham, polony, Russian, vienna, egg and cheese, depending on the kota. The patty is a chicken patty, and Kota 4 comes with chicken ribs." },
+  { q: "What is on a kota?", a: "Our four kotas (Budget Bliss, Street Boss, Mega Munch and Royal Beast) are stacked with chips, egg, cheese, chicken patty, tomato, cucumber, red onion, atchaar and lettuce, plus polony, Russian or vienna depending on the kota. Royal Beast also comes with boneless chicken rib." },
   { q: "How do I order?", a: "Pick your kota on the menu, check out and send your order on WhatsApp. We confirm it and get cooking." },
   { q: "How can I pay?", a: "You can pay cash, by EFT, or by card using a payment link we send you on WhatsApp." },
   { q: "Can I collect?", a: `Yes. Collect from ${ADDRESS_LINE}, ${SITE.address.landmark}. Open 7 days, 9am to 7pm.` },

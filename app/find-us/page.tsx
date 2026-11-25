@@ -13,7 +13,7 @@ export default function FindUs() {
   return (
     <>
       <JsonLd data={{ "@context": "https://schema.org", "@type": "ContactPage", url: `${SITE.url}/find-us`, mainEntity: { "@id": `${SITE.url}/#business` } }} />
-      <PageHero crumbs={[{ name: "Find us", href: "/find-us" }]} title="Come and get it" mark={["get"]} text={`${ADDRESS_LINE}. ${SITE.address.landmark}.`} image={{ src: "/kedi-kota-toasted-kota-with-egg-patty-cheese-and-sauce.jpg", alt: "Toasted Kedi Kota kota with egg, patty and cheese" }} />
+      <PageHero crumbs={[{ name: "Find us", href: "/find-us" }]} title="Come and get it" mark={["get"]} text={`${ADDRESS_LINE}. ${SITE.address.landmark}.`} image={{ src: "/kedi-kota-shop-front-norkem-park.jpg", alt: "The Kedi Kota shop front in Norkem Park with outdoor seating" }} />
       <section className="mx-auto grid max-w-7xl gap-8 px-5 py-16 md:grid-cols-2">
         <div className="rounded-[2rem] border-4 border-ink bg-white p-8 shadow-[6px_6px_0_0_#0e0e0e]">
           <h2 className="font-display text-3xl">Visit</h2>
