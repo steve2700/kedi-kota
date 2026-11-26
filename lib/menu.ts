@@ -2,7 +2,7 @@ export interface Kota { id: string; name: string; price: number; ingredients: st
 export interface Side { id: string; name: string; price: number; group: string }
 
 export const KOTAS: Kota[] = [
-  { id: "kota-1", name: "Budget Bliss", tag: "Kota 1", price: 35, ingredients: ["chips", "egg", "chicken patty", "cheese", "tomato", "cucumber", "red onion", "atchaar", "lettuce"] },
+  { id: "kota-1", name: "Budget Bliss", tag: "Kota 1", price: 35, ingredients: ["chips", "chicken patty", "cheese", "tomato", "cucumber", "red onion", "atchaar", "lettuce"] },
   { id: "kota-2", name: "Street Boss", tag: "Kota 2", price: 65, ingredients: ["chips", "polony", "Russian", "egg", "cheese", "chicken patty", "tomato", "cucumber", "red onion", "atchaar", "lettuce"] },
   { id: "kota-3", name: "Mega Munch", tag: "Kota 3", price: 80, ingredients: ["chips", "vienna", "chicken patty", "egg", "cheese", "tomato", "cucumber", "red onion", "atchaar", "lettuce"] },
   { id: "kota-4", name: "Royal Beast", tag: "Kota 4", price: 110, ingredients: ["chips", "polony", "egg", "cheese", "Russian", "chicken patty", "boneless chicken rib", "vienna", "tomato", "cucumber", "red onion", "atchaar", "lettuce"] },
